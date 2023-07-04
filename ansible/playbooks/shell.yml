@@ -1,5 +1,5 @@
 ---
- - hosts: aws
+ - hosts: all
    become: yes
    tasks:
      - name : execute a shell
