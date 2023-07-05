@@ -1,0 +1,14 @@
+hosts:
+name: 
+tasks: 
+  - ec2:
+      keyname:
+      instancetype:
+      image:
+      wait:
+      group:
+      count:
+      vpc_subnet_id:
+      assign_public_ip:
+      region:
+    register: out
