@@ -1,14 +1,14 @@
-hosts:
-name: 
+hosts: localhost
+name: creating ec2 instance
 tasks: 
   - ec2:
-      keyname:
-      instancetype:
-      image:
-      wait:
-      group:
-      count:
-      vpc_subnet_id:
-      assign_public_ip:
-      region:
+      keyname: AKIA45IIMCHXGRWIDGZU
+      instancetype: t2.micro
+      image: ami-0f5ee92e2d63afc18
+      wait: yes
+      group: sg-0573773ec0be15a37
+      count: 3
+      vpc_subnet_id: subnet-0442b2512ebfa8c27
+      assign_public_ip: yes
+      region: ap-south-1
     register: out
