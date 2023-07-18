@@ -106,7 +106,13 @@
     Ex: kubeadm join 10.128.15.231:6443 --token mks3y2.v03tyyru0gy12mbt \
            --discovery-token-ca-cert-hash sha256:3de23d42c7002be0893339fbe558ee75e14399e11f22e3f0b34351077b7c4b56
 
+If any error observed related to CRI, please follow the below steps
 
+1. Set up the Docker repository as described in https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository
+2. Remove the old containerd:apt remove containerd
+3. Update repository data and install the new containerd: apt update, apt install containerd.io
+4. Remove the installed default config file: rm /etc/containerd/config.toml
+5. Restart containerd: systemctl restart containerd
 
 
 ## how to find kubeadm join token later
