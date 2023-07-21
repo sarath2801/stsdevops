@@ -1,0 +1,49 @@
+root@instance-5:~# kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+Flag --record has been deprecated, --record will be removed in the future
+deployment.apps/mydeploy image updated
+root@instance-5:~# kubectl rollout history deployment/mydeploy
+deployment.apps/mydeploy
+REVISION  CHANGE-CAUSE
+1         <none>
+2         kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+
+root@instance-5:~# kubectl set image deployment/mydeploy mycont=nginx:1.1
+deployment.apps/mydeploy image updated
+root@instance-5:~# kubectl rollout history deployment/mydeploy
+deployment.apps/mydeploy
+REVISION  CHANGE-CAUSE
+1         <none>
+2         kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+3         kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+
+root@instance-5:~# kubectl rollout undo deployment/mydeploy
+deployment.apps/mydeploy rolled back
+root@instance-5:~# kubectl rollout history deployment/mydeploy
+deployment.apps/mydeploy
+REVISION  CHANGE-CAUSE
+1         <none>
+3         kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+4         kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+
+root@instance-5:~# kubectl rollout undo deployment/mydeploy --to-revision=1
+deployment.apps/mydeploy rolled back
+root@instance-5:~# kubectl rollout history deployment/mydeploy
+deployment.apps/mydeploy
+REVISION  CHANGE-CAUSE
+3         kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+4         kubectl set image deployment/mydeploy mycont=nginx:1.2 --record=true
+5         <none>
+
+root@instance-5:~# kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+mydeploy-5d8c4755f8-7265w   1/1     Running   0          25m
+mydeploy-5d8c4755f8-9x58v   1/1     Running   0          13m
+mydeploy-5d8c4755f8-cb6v4   1/1     Running   0          25m
+mydeploy-5d8c4755f8-jns5b   1/1     Running   0          25m
+root@instance-5:~# kubectl get pods -o wide
+NAME                        READY   STATUS    RESTARTS   AGE   IP          NODE         NOMINATED NODE   READINESS GATES
+mydeploy-5d8c4755f8-7265w   1/1     Running   0          25m   10.38.0.1   instance-6   <none>           <none>
+mydeploy-5d8c4755f8-9x58v   1/1     Running   0          13m   10.40.0.2   instance-7   <none>           <none>
+mydeploy-5d8c4755f8-cb6v4   1/1     Running   0          25m   10.38.0.2   instance-6   <none>           <none>
+mydeploy-5d8c4755f8-jns5b   1/1     Running   0          25m   10.40.0.1   instance-7   <none>           <none>
+root@instance-5:~#
