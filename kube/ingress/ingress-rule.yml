@@ -8,21 +8,25 @@ metadata:
     #ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+   #host: 34.100.136.167:30799
+   - http:
       paths:
         - path: /electronics
+          pathType: Prefix
           backend:
-             service:
+            service:
               name: myshop-electronics-svc
               port:
                 number: 80
         - path: /fashion
+          pathType: Prefix
           backend:
-              service:
+            service:
               name: myshop-fashion-svc
               port:
                 number: 80
         - path: /travel
+          pathType: Prefix
           backend:
             service:
               name: myshop-travel-svc
