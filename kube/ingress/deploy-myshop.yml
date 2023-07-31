@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myshop-fashion-ms 
+  name: myshop-fashion-ms
+  namespace: nginx-ingress
 spec:
   replicas: 2
   selector:
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: myshop-fashion-svc
+  namespace: nginx-ingress
 spec:
   type: ClusterIP
   ports:
@@ -36,6 +38,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myshop-electronics-ms
+  namespace: nginx-ingress
 spec:
   replicas: 2
   selector:
@@ -59,6 +62,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: myshop-electronics-svc
+  namespace: nginx-ingress
 spec:
   type: ClusterIP
   ports:
@@ -72,6 +76,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myshop-travel-ms
+  namespace: nginx-ingress
 spec:
   replicas: 2
   selector:
@@ -94,6 +99,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: myshop-travel-svc
+  namespace: nginx-ingress
 spec:
   type: ClusterIP
   ports:
