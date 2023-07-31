@@ -3,22 +3,28 @@ kind: Ingress
 metadata:
   name: mying-rule
   namespace: nginx-ingress
-  annotations:
+  #annotations:
     #kubernetes.io/ingress.class: "nginx"
-    ingress.kubernetes.io/rewrite-target: /
+    #ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
         - path: /electronics
           backend:
-            serviceName: myshop-electronics-svc
-            servicePort: 80
+             service:
+              name: myshop-electronics-svc
+              port:
+                number: 80
         - path: /fashion
           backend:
-            serviceName: myshop-fashion-svc
-            servicePort: 80
+              service:
+              name: myshop-fashion-svc
+              port:
+                number: 80
         - path: /travel
           backend:
-            serviceName: myshop-travel-svc
-            servicePort: 80
+            service:
+              name: myshop-travel-svc
+              port:
+                number: 80
