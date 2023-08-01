@@ -9,11 +9,13 @@ spec:
     - ReadWriteMany
   local:
     path: /storage/data
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - minikube
+#  nodeAffinity:
+#    required:
+#      nodeSelectorTerms:
+#        - matchExpressions:
+#            - key: kubernetes.io/hostname
+#              operator: In
+#              values:
+#                - minikube
+    hostPath:
+    path: /tmp/pvdata
