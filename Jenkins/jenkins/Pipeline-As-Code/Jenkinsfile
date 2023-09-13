@@ -47,9 +47,13 @@ pipeline {
         stage('package') {
 			steps {
                 echo 'metric-check..'
-				bat label: '', script: 'mvn package'	
+				bat label: '', script: 'mvn package'
             }
 			
+        }
+        stahe('test'){
+        steps{
+        }
         }
     }
 }
